@@ -23,6 +23,23 @@
             
             $('#pokemon').append(`<div class="col-2"><img id="${i}" src="raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${i}.png" alt=""></div>`);
         }
+        $('img').on('click',function(){
+            //recuperar el id del pokemon
+            const id_pokemon = $(this).attr(id);
+            let pokemon = {};
+            //busco los datos con ajax
+            $.get('https://pokeapi.co/api/v2/pokemon'+ id_pokemon +'/',function(data){
+                pokemon = data;
+
+                //mostara datos 
+                $('#name').html(pokemon.name);
+                $('#height').html(pokemon.heigt);
+                $('#weight').html(pokemon.weight);
+                $('#types').html(pokemon.types)
+
+                console.log(pokemon);
+            })
+        })
     </script>
 </body>
 </html>
