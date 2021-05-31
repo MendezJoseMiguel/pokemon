@@ -12,28 +12,36 @@
 <body>
     <div class="container">
         <h1>Construye tu Pokedex</h1>
-        <div class="row" id="pokemon">
-            <p>Altura: <span id="height"></span></p>
-            <p>Peso: <span id="weight"></span></p>
-            <p>Types: <span id="types"></span></p>
+        <div class="row">
+            <div class="col-8">
+                <div class="row" id="pokemon">
+
+                </div>
+            </div>
+            <div class="col-4" >
+                <p>Nombre: <span id="name"></span></p>
+                <p>Altura: <span id="height"></span></p>
+                <p>Peso: <span id="weight"></span></p>
+                <p>Types: <span id="types"></span></p>
+            </div>
         </div>
     </div>
     <script>
         for (let i=1; i<52;i++){
             
-            $('#pokemon').append(`<div class="col-2"><img id="${i}" src="raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${i}.png" alt=""></div>`);
+            $('#pokemon').append(`<div class="col-2"><img id="${i}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${i}.png" alt=""></div>`);
         }
         $('img').on('click',function(){
             //recuperar el id del pokemon
-            const id_pokemon = $(this).attr(id);
+            const id_pokemon = $(this).attr('id');
             let pokemon = {};
             //busco los datos con ajax
-            $.get('https://pokeapi.co/api/v2/pokemon'+ id_pokemon +'/',function(data){
+            $.get('https://pokeapi.co/api/v2/pokemon/'+ id_pokemon +'/',function(data){
                 pokemon = data;
 
                 //mostara datos 
                 $('#name').html(pokemon.name);
-                $('#height').html(pokemon.heigt);
+                $('#height').html(pokemon.height);
                 $('#weight').html(pokemon.weight);
                 $('#types').html(pokemon.types)
 
