@@ -23,7 +23,7 @@
                 <p>Altura: <span id="height"></span></p>
                 <p>Peso: <span id="weight"></span></p>
                 <p>Types: <span id="types"></span></p>
-            </div>
+            </div> 
         </div>
     </div>
     <script>
@@ -38,7 +38,11 @@
             //busco los datos con ajax
             $.get('https://pokeapi.co/api/v2/pokemon/'+ id_pokemon +'/',function(data){
                 pokemon = data;
-
+                let tipos ="";
+                for (let type of pokemon.types){
+                    console.log(type);
+                    tipos += "<li>"+type.types+"</li>"  
+                }
                 //mostara datos 
                 $('#name').html(pokemon.name);
                 $('#height').html(pokemon.height);
